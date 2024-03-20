@@ -1,13 +1,13 @@
 // Accesing object the old way
 
-let person = {
-    firstname: 'Sanghpal',
-    lastname: 'Kamble'
-}
-let personFirstName = person.firstname;
-let personLastName = person.lastname;
-console.log(personFirstName)
-console.log(personLastName)
+// let person = {
+//     firstname: 'Sanghpal',
+//     lastname: 'Kamble'
+// }
+// let personFirstName = person.firstname;
+// let personLastName = person.lastname;
+// console.log(personFirstName)
+// console.log(personLastName)
 
 // Acessing object the new way
 
@@ -17,9 +17,9 @@ console.log(personLastName)
 
 // We can also rename the variables with new way
 
-let {firstname:fname, lastname:lname} = person;
-console.log(fname)
-console.log(lname)
+// let {firstname:fname, lastname:lname} = person;
+// console.log(fname)
+// console.log(lname)
 
 // what happens if you destruct a propert that does not exist
 
@@ -28,8 +28,8 @@ console.log(lname)
 
 // Setting default values in destructuring
 
-let {firstname,lastname,middlename = 'Rajendra'} = person;
-console.log(middlename)
+// let {firstname,lastname,middlename = 'Rajendra'} = person;
+// console.log(middlename)
 
 // Destructuring in Array 
 
@@ -92,9 +92,9 @@ const personDetails = {
     gender: 'male'
 }
 
-let {name, ...g} = personDetails;
-console.log(name);
-console.log(g);
+// let {name, ...g} = personDetails;
+// console.log(name);
+// console.log(g);
 
 // In this example , two variables are swaped using destructuring syntax
 
@@ -107,3 +107,72 @@ let name2 = 'ray';
 
 console.log(name1);
 console.log(name2);
+
+// A function may return object or null in some sitituion. for example
+
+function getPerson(){
+    return null;
+}
+
+// You can avoid this. you can use the OR operator (||) to fall the null object to an empty object
+
+let {firstName,lastName} = getPerson() || {}
+console.log(firstName);
+console.log(lastName);
+
+// Nested object destructuring 
+
+// assuming that you have a member where the object has name has the object as property
+
+// let member = {
+//     id:1,
+//     name: {
+//         firstN:'Sanghpal',
+//         lastN:'Kamble'
+//     }
+// };
+
+// // heres how to destructure it 
+// let {id, name:{firstN,lastN}}= member
+// console.log(id);
+// console.log(firstN,lastN);
+
+// is it possible to destructure the nested property as well as parent property
+
+let member = {
+    id:1,
+    name: {
+        firstN:'Sanghpal',
+        lastN:'Kamble'
+    }
+};
+
+let {id, name:{firstN,lastN}, name}= member;
+console.log(id);
+console.log(firstN,lastN);
+console.log(name);
+
+// destructuring function arguments
+// here's how you destructure arguments
+
+// Old way
+
+// let displayFullName = (person) => `${person.firstname}, ${person.lastname}`;
+
+// let person = {
+//     firstname: 'Sanghpal',
+//     lastname: 'Kamble'
+// }
+
+// console.log(displayFullName(person))
+
+// New way
+
+let displayFullName = ({firstname,lastname}) => `${firstname}, ${lastname}`;
+
+let person = {
+    firstname: 'Sanghpal',
+    lastname: 'Kamble'
+}
+
+console.log(displayFullName(person))
